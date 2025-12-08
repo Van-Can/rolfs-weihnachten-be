@@ -48,7 +48,7 @@ export async function aktiviereWeihnachtsmusik(
           jsonBody: {
             ok: true,
             message:
-              "Noch ist Nachruhe (von 8:00 bis 20:00 Uhr). Die Musik kann noch nicht gespielt werden. 🎄🎵",
+              "Noch ist Nachruhe (von 8:00 bis 21:00 Uhr). Die Musik kann noch nicht gespielt werden. 🎄🎵",
             espStatus: response.status,
           },
         };
