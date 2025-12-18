@@ -11,7 +11,7 @@ export async function aktiviereWeihnachtsmusik(
 ): Promise<HttpResponseInit> {
   context.log(`ESP32-Trigger gestartet für URL: ${request.url}`);
 
-  const ESP32_URL = "http://84.142.167.207:80/trigger";
+  const ESP32_URL = "http://91.9.253.126:80/trigger";
 
   try {
     const response = await fetch(ESP32_URL, {
