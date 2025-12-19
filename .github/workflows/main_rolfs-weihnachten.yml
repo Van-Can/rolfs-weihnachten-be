@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - temporary-until-error-fixed
   workflow_dispatch:
 
 env:
