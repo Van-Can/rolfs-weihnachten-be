@@ -63,6 +63,38 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2FED13546DE647F6926A2A5EF21A731C }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A2F4B073810C413582365E8C2CD88E7F }}
 
+      - name: Set Function App settings
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: 'rolfs-weihnachten'
+          app-settings-json: |
+            [
+              {
+                "name": "FUNCTIONS_WORKER_RUNTIME",
+                "value": "node",
+                "slotSetting": false
+              },
+              {
+                "name": "AzureWebJobsStorage",
+                "value": "${{ secrets.AZUREWEBJOBSSTORAGE }}",
+                "slotSetting": false
+              },
+              {
+                "name": "TABLE_NAME",
+                "value": "feedback",
+                "slotSetting": false
+              },
+              {
+                "name": "TABLES_CONNECTION_STRING",
+                "value": "${{ secrets.TABLES_CONNECTION_STRING }}",
+                "slotSetting": false
+              },
+              {
+                "name": "ROLFSURL",
+                "value": "${{ secrets.ROLFSURL }}",
+                "slotSetting": false
+              }
+            ]
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
