@@ -28,7 +28,7 @@ export async function aktiviereWeihnachtsmusik(
           status: 201,
           jsonBody: {
             ok: true,
-            message: "Weihnachtsmusik im Märchenwald wurde aktiviert 🎄🎵",
+            message: "Musik im Märchenwald wurde aktiviert 🎄🎵",
             espStatus: response.status,
           },
         };
@@ -37,7 +37,7 @@ export async function aktiviereWeihnachtsmusik(
           status: 200,
           jsonBody: {
             ok: true,
-            message: "Weihnachtsmusik im Märchenwald läuft bereits. 🎄🎵",
+            message: "Musik im Märchenwald läuft bereits. 🎄🎵",
             espStatus: response.status,
           },
         };
@@ -57,7 +57,7 @@ export async function aktiviereWeihnachtsmusik(
           status: 201,
           jsonBody: {
             ok: true,
-            message: "Weihnachtsmusik im Märchenwald wurde aktiviert 🎄🎵",
+            message: "Musik im Märchenwald wurde aktiviert 🎄🎵",
             espStatus: response.status,
           },
         };
