@@ -17,7 +17,7 @@ export async function aktiviereWeihnachtsmusik(
     const response = await fetch(ESP32_URL, {
       method: "GET",
       // verhindert ewiges Hängen bei Offline-ESP32
-      signal: AbortSignal.timeout(4000),
+      signal: AbortSignal.timeout(10000),
     });
 
     context.log(`ESP32 Response status: ${response.status}`);
