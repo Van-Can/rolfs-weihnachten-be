@@ -11,6 +11,20 @@ export async function aktiviereWeihnachtsmusik(
 ): Promise<HttpResponseInit> {
   context.log(`ESP32-Trigger gestartet für URL: ${request.url}`);
 
+  // Check if it's night time (21:00 to 08:00)
+  const currentHour = new Date().getHours();
+  if (currentHour >= 21 || currentHour < 8) {
+    return {
+      status: 300,
+      jsonBody: {
+        ok: true,
+        message:
+          "Noch ist Nachruhe (von 21:00 bis 08:00 Uhr). Die Musik kann noch nicht gespielt werden. 🎄🎵",
+        espStatus: 300,
+      },
+    };
+  }
+
   const ESP32_URL = `${process.env.ROLFSURL}/trigger`;
 
   try {
@@ -38,17 +52,6 @@ export async function aktiviereWeihnachtsmusik(
           jsonBody: {
             ok: true,
             message: "Musik im Märchenwald läuft bereits. 🎄🎵",
-            espStatus: response.status,
-          },
-        };
-
-      case 300:
-        return {
-          status: 300,
-          jsonBody: {
-            ok: true,
-            message:
-              "Noch ist Nachruhe (von 21:00 bis 08:00 Uhr). Die Musik kann noch nicht gespielt werden. 🎄🎵",
             espStatus: response.status,
           },
         };
