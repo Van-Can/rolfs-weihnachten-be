@@ -55,7 +55,7 @@ export async function aktiviereWeihnachtsmusik(
 
     if (response.status === 201) {
       return {
-        status: 200,
+        status: 201,
         jsonBody: {
           ok: true,
           message: "Musik im Märchenwald wurde aktiviert 🎄🎵",
