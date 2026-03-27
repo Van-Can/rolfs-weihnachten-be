@@ -7,7 +7,7 @@ import {
 
 export async function aktiviereWeihnachtsmusik(
   request: HttpRequest,
-  context: InvocationContext
+  context: InvocationContext,
 ): Promise<HttpResponseInit> {
   context.log(`ESP32-Trigger gestartet für URL: ${request.url}`);
 
@@ -17,13 +17,13 @@ export async function aktiviereWeihnachtsmusik(
 
   context.log(`Aktuelle Berliner Stunde: ${currentHour}`);
 
-  if (currentHour >= 21 || currentHour < 8) {
+  if (currentHour >= 21 || currentHour < 7) {
     return {
       status: 300,
       jsonBody: {
         ok: false,
         message:
-          "Noch ist Nachtruhe (21:00 bis 08:00 Uhr). Die Musik kann nicht gespielt werden. 🎄🎵",
+          "Noch ist Nachtruhe (21:00 bis 07:00 Uhr). Die Musik kann nicht gespielt werden. 🎄🎵",
       },
     };
   }
@@ -44,7 +44,6 @@ export async function aktiviereWeihnachtsmusik(
   try {
     const response = await fetch(ESP32_URL, {
       method: "GET",
-      signal: AbortSignal.timeout(10000),
     });
 
     context.log(`ESP32 Response status: ${response.status}`);
