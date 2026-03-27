@@ -13,7 +13,7 @@ export async function aktiviereWeihnachtsmusik(
 
   // Check if it's night time (21:00 to 08:00)
   const currentHour = new Date().getHours();
-  if (currentHour >= 21 || currentHour < 8) {
+  if (currentHour >= 21-1 || currentHour < 8-1) {
     return {
       status: 300,
       jsonBody: {
