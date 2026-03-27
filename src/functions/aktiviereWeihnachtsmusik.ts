@@ -11,17 +11,13 @@ export async function aktiviereWeihnachtsmusik(
 ): Promise<HttpResponseInit> {
   context.log(`ESP32-Trigger gestartet für URL: ${request.url}`);
 
-  const berlinHour = Number(
-    new Intl.DateTimeFormat("de-DE", {
-      timeZone: "Europe/Berlin",
-      hour: "numeric",
-      hour12: false,
-    }).format(new Date())
-  );
+  const currentDate = new Date();
 
-  context.log(`Aktuelle Berliner Stunde: ${berlinHour}`);
+  const currentHour = currentDate.getHours();
 
-  if (berlinHour >= 21 || berlinHour < 8) {
+  context.log(`Aktuelle Berliner Stunde: ${currentHour}`);
+
+  if (currentHour >= 21 || currentHour < 8) {
     return {
       status: 300,
       jsonBody: {
