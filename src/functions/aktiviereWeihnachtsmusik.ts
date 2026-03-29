@@ -13,13 +13,12 @@ export async function aktiviereWeihnachtsmusik(
 
   // Check if it's night time (21:00 to 08:00)
   const currentHour = new Date().getHours();
-  if (currentHour >= 21-1 || currentHour < 8-1) {
+  if (currentHour >= 21-2 || currentHour < 8-2) {
     return {
       status: 300,
       jsonBody: {
         ok: false,
-        message:
-          "Noch ist Nachtruhe (21:00 bis 07:00 Uhr). Die Musik kann nicht gespielt werden. 🎄🎵",
+        message: `Es ist ${currentHour} Uhr. Noch ist Nachtruhe (21:00 bis 08:00 Uhr). Die Musik kann nicht gespielt werden. 🎄🎵`,
       },
     };
   }
@@ -49,7 +48,7 @@ export async function aktiviereWeihnachtsmusik(
         status: 201,
         jsonBody: {
           ok: true,
-          message: "Musik im Märchenwald wurde aktiviert 🎄🎵",
+          message: `Es ist ${currentHour} Uhr. Musik im Märchenwald wurde aktiviert 🎄🎵`,
           espStatus: response.status,
         },
       };
@@ -60,7 +59,7 @@ export async function aktiviereWeihnachtsmusik(
         status: 200,
         jsonBody: {
           ok: true,
-          message: "Musik im Märchenwald läuft bereits. 🎄🎵",
+          message: `Es ist ${currentHour} Uhr. Musik im Märchenwald läuft bereits. 🎄🎵`,
           espStatus: response.status,
         },
       };
