@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - new
   workflow_dispatch:
 
 env:
