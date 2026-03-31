@@ -5,6 +5,16 @@ import {
   InvocationContext,
 } from "@azure/functions";
 
+function getBerlinHour(): number {
+  return Number(
+    new Intl.DateTimeFormat("de-DE", {
+      timeZone: "Europe/Berlin",
+      hour: "2-digit",
+      hour12: false,
+    }).format(new Date()),
+  );
+}
+
 export async function aktiviereWeihnachtsmusik(
   request: HttpRequest,
   context: InvocationContext,
@@ -12,13 +22,15 @@ export async function aktiviereWeihnachtsmusik(
   context.log(`ESP32-Trigger gestartet für URL: ${request.url}`);
 
   // Check if it's night time (21:00 to 08:00)
-  const currentHour = new Date().getHours();
-  if (currentHour >= 21-2 || currentHour < 8-2) {
+
+  const berlinHour = getBerlinHour();
+
+  if (berlinHour >= 21 || berlinHour < 8) {
     return {
       status: 300,
       jsonBody: {
         ok: false,
-        message: `Es ist ${currentHour} Uhr. Noch ist Nachtruhe (21:00 bis 08:00 Uhr). Die Musik kann nicht gespielt werden. 🎄🎵`,
+        message: `Es ist ${berlinHour} Uhr. Noch ist Nachtruhe (21:00 bis 08:00 Uhr). Die Musik kann nicht gespielt werden. 🎄🎵`,
       },
     };
   }
@@ -48,7 +60,7 @@ export async function aktiviereWeihnachtsmusik(
         status: 201,
         jsonBody: {
           ok: true,
-          message: `Es ist ${currentHour} Uhr. Musik im Märchenwald wurde aktiviert 🎄🎵`,
+          message: `Es ist ${berlinHour} Uhr. Musik im Märchenwald wurde aktiviert 🎄🎵`,
           espStatus: response.status,
         },
       };
@@ -59,7 +71,7 @@ export async function aktiviereWeihnachtsmusik(
         status: 200,
         jsonBody: {
           ok: true,
-          message: `Es ist ${currentHour} Uhr. Musik im Märchenwald läuft bereits. 🎄🎵`,
+          message: `Es ist ${berlinHour} Uhr. Musik im Märchenwald läuft bereits. 🎄🎵`,
           espStatus: response.status,
         },
       };
