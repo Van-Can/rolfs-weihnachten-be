@@ -83,7 +83,7 @@ jobs:
              },
              {
                "name": "AzureWebJobsStorage",
-               "value": "${{ secrets.AZUREWEBJOBSSTORAGE }}", //DefaultEndpointsProtocol=https;AccountName=rolfweihnachtena1b3;AccountKey=RIWvnEX19GPfZDn+hnTQTu8vdspC9hUMwrQg2XkkQjPKSMgAZS14CgEHtmexgvj0Za7LgmOOGE5I+AStlKw1aA==;EndpointSuffix=core.windows.net
+               "value": "${{ secrets.AZUREWEBJOBSSTORAGE }}",
                "slotSetting": false
              },
              {
