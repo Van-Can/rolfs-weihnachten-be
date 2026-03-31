@@ -77,11 +77,6 @@ jobs:
           app-settings-json: |
            [
              {
-               "name": "FUNCTIONS_WORKER_RUNTIME",
-               "value": "node",
-               "slotSetting": false
-             },
-             {
                "name": "AzureWebJobsStorage",
                "value": "${{ secrets.AZUREWEBJOBSSTORAGE }}",
                "slotSetting": false
