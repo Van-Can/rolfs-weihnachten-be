@@ -6,13 +6,11 @@ import {
 } from "@azure/functions";
 
 function getBerlinHour(): number {
-  return Number(
-    new Intl.DateTimeFormat("de-DE", {
-      timeZone: "Europe/Berlin",
-      hour: "2-digit",
-      hour12: false,
-    }).format(new Date()),
+  const now = new Date();
+  const berlinTime = new Date(
+    now.toLocaleString("en-US", { timeZone: "Europe/Berlin" })
   );
+  return berlinTime.getHours();
 }
 
 export async function aktiviereWeihnachtsmusik(
