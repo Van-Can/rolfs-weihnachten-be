@@ -70,7 +70,38 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FA304D015E474D6F87A32151F3FBC02F }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_74815A301EE145CBB9EE98A753C4CF8E }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_14948354CAEB4913B3E169D1F964BE48 }}
-
+      - name: Set Function App settings
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: 'rolfs-maerchenwald'
+          app-settings-json: |
+           [
+             {
+               "name": "FUNCTIONS_WORKER_RUNTIME",
+               "value": "node",
+               "slotSetting": false
+             },
+             {
+               "name": "AzureWebJobsStorage",
+               "value": "${{ secrets.AZUREWEBJOBSSTORAGE }}", //DefaultEndpointsProtocol=https;AccountName=rolfweihnachtena1b3;AccountKey=RIWvnEX19GPfZDn+hnTQTu8vdspC9hUMwrQg2XkkQjPKSMgAZS14CgEHtmexgvj0Za7LgmOOGE5I+AStlKw1aA==;EndpointSuffix=core.windows.net
+               "slotSetting": false
+             },
+             {
+               "name": "TABLE_NAME",
+               "value": "feedback",
+               "slotSetting": false
+             },
+             {
+               "name": "TABLES_CONNECTION_STRING",
+               "value": "${{ secrets.TABLES_CONNECTION_STRING }}",
+               "slotSetting": false
+             },
+             {
+               "name": "ROLFSURL",
+               "value": "${{ secrets.ROLFSURL }}",
+               "slotSetting": false
+             }
+           ]
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
