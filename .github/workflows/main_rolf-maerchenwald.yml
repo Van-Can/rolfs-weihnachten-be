@@ -73,7 +73,7 @@ jobs:
       - name: Set Function App settings
         uses: azure/appservice-settings@v1
         with:
-          app-name: 'rolfs-maerchenwald'
+          app-name: 'rolf-maerchenwald'
           app-settings-json: |
            [
              {
